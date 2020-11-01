@@ -27,4 +27,8 @@ describe('Thermostat', function() {
   it('has powersave mode on when initialised', function() {
     expect(thermostat._isPowerSavingModeOn()).toBe(true);
   })
+  it('can have PSM turned off', function() {
+    thermostat.powerSavingModeOff();
+    expect(thermostat._isPowerSavingModeOn()).toBe(false);
+  })
 })
