@@ -24,4 +24,7 @@ describe('Thermostat', function() {
     }
     expect(thermostat.getCurrentTemperature()).toEqual(10);
   })
+  it('has powersave mode on when initialised', function() {
+    expect(thermostat._isPowerSavingModeOn()).toBe(true);
+  })
 })
