@@ -6,4 +6,8 @@ class Thermostat {
   getCurrentTemperature() {
     return this.temperature;
   }
+
+  tempUp() {
+    this.temperature +=1;
+  }
 }
