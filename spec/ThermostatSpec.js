@@ -54,4 +54,28 @@ describe('Thermostat', function() {
     thermostat.resetTemperature();
     expect(thermostat.getCurrentTemperature()).toEqual(20);
   })
+  describe('displaying usage levels', function() {
+    describe('when temp below 18', function() {
+      it('displays low-usage', function() { 
+      for(let i = 0; i < 3; i++) {
+        thermostat.tempDown();
+      }
+      expect(thermostat.displayUsage()).toEqual('low-usage');
+      })
+    })
+    describe('when temp 18 to <=25', function() {
+      it('displays medium-usage', function() {
+        expect(thermostat.displayUsage()).toEqual('medium-usage');
+      })
+    })
+    describe('when temp above 25', function() {
+      it('displays high-usage', function() {
+        thermostat.powerSavingModeOff();
+        for(let i = 0; i < 6; i ++) {
+          thermostat.tempUp();
+        }
+        expect(thermostat.displayUsage()).toEqual('high-usage');
+      })
+    })
+  })
 })
