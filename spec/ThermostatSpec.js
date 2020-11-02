@@ -36,4 +36,10 @@ describe('Thermostat', function() {
     thermostat.powerSavingModeOn();
     expect(thermostat._isPowerSavingModeOn()).toBe(true);
   })
+  it('has max temp of 25 when PSM on', function() {
+    for(let i=0; i<7; i++) {
+      thermostat.tempUp();
+    }
+    expect(thermostat.getCurrentTemperature()).toEqual(25);
+  })
 })
