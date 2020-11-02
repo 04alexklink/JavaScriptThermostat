@@ -8,7 +8,6 @@ class Thermostat {
     this.MAX_TEMP_PSM_OFF = 32;
     this.MEDIUM_USAGE_HIGHER_LIMIT = 25;
     this.LOWER_USAGE_HIGHER_LIMIT = 18;
-    this.HIGH_USAGE_LOWER_LIMIT;
   }
   getCurrentTemperature() {
     return this.temperature;
@@ -42,13 +41,13 @@ class Thermostat {
   powerSavingModeOff() {
     this.powerSavingMode = false;
   }
-  resetToPSMOnMaxTemp() {
+  _resetToPSMOnMaxTemp() {
     if(this.temperature > this.MAX_TEMP_PSM_ON) {
       this.temperature = this.MAX_TEMP_PSM_ON
     }
   }
   powerSavingModeOn() {
-    this.resetToPSMOnMaxTemp();
+    this._resetToPSMOnMaxTemp();
     this.powerSavingMode = true;
   }
   resetTemperature() {
