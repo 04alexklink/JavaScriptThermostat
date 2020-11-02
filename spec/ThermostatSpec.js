@@ -49,4 +49,9 @@ describe('Thermostat', function() {
     }
     expect(thermostat.getCurrentTemperature()).toEqual(32);
   })
+  it('can have temperature reset to default', function() {
+    thermostat.tempUp();
+    thermostat.resetTemperature();
+    expect(thermostat.getCurrentTemperature()).toEqual(20);
+  })
 })
