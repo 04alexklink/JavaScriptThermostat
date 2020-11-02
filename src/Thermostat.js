@@ -65,3 +65,11 @@ class Thermostat {
     }
   }
 }
+var thermostat = new Thermostat();
+console.log(thermostat.getCurrentTemperature(), "hello");
+thermostat.tempDown();
+console.log(thermostat.temperature);
+for(let i = 0; i <2; i++) {
+  thermostat.tempDown();
+}
+console.log(thermostat.displayUsage());
