@@ -42,11 +42,17 @@ class Thermostat {
   powerSavingModeOff() {
     this.powerSavingMode = false;
   }
+  resetToPSMOnMaxTemp() {
+    if(this.temperature > this.MAX_TEMP_PSM_ON) {
+      this.temperature = this.MAX_TEMP_PSM_ON
+    }
+  }
   powerSavingModeOn() {
+    this.resetToPSMOnMaxTemp();
     this.powerSavingMode = true;
   }
   resetTemperature() {
-    this.temperature = 20;
+    this.temperature = this.DEFAULT_TEMPERATURE;
   }
 
   displayUsage() {

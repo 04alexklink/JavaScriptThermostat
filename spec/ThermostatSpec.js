@@ -78,4 +78,13 @@ describe('Thermostat', function() {
       })
     })
   })
+  it('has temp reset to value of MAX_TEMP_PSM_ON if PSM is switched to be turned on and current temperature is greater than this', function() {
+    thermostat.powerSavingModeOff();
+    for(let i=0; i < 8; i++) {
+      thermostat.tempUp();
+    }
+    expect(thermostat.getCurrentTemperature()).toEqual(28);
+    thermostat.powerSavingModeOn();
+    expect(thermostat.getCurrentTemperature()).toEqual(25);
+  })
 })
