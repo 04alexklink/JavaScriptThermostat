@@ -23,7 +23,12 @@ tempDown.addEventListener('click', function() {
 resetTemp.addEventListener('click', function() {
   thermostat.resetTemperature();
   updateTemperature();
-})
+});
+
+turnPSMOff.addEventListener('click', function() {
+  thermostat.powerSavingModeOff();
+  PSMStatus.innerHTML = `Power Saving Mode: Off`;
+});
 
 function updateTemperature() {
   currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;
