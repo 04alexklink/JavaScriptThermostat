@@ -14,3 +14,8 @@ tempUp.addEventListener('click', function() {
     thermostat.tempUp();
     currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;   
   });
+
+tempDown.addEventListener('click', function() {
+  thermostat.tempDown();
+  currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;
+});
