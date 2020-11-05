@@ -12,6 +12,12 @@ class Thermostat {
   getCurrentTemperature() {
     return this.temperature;
   }
+  _isMaximumTemperature() {
+    if(this._isPowerSavingModeOn()) {
+      return (this.temperature === this.MAX_TEMP_PSM_ON);
+    }
+    return (this.temperature === this.MAX_TEMP_PSM_OFF);
+  }
   tempUp() {
     if(this._isMaximumTemperature()) {
       return;
@@ -26,13 +32,6 @@ class Thermostat {
   }
   _isMinimumTemperature() {
     return (this.temperature === this.MINIMUM_TEMPERATURE);
-  }
-
-  _isMaximumTemperature() {
-    if(this._isPowerSavingModeOn()) {
-      return (this.temperature === this.MAX_TEMP_PSM_ON);
-    }
-    return (this.temperature === this.MAX_TEMP_PSM_OFF);
   }
   _isPowerSavingModeOn() {
     return this.powerSavingMode;
@@ -65,11 +64,3 @@ class Thermostat {
     }
   }
 }
-var thermostat = new Thermostat();
-console.log(thermostat.getCurrentTemperature(), "hello");
-thermostat.tempDown();
-console.log(thermostat.temperature);
-for(let i = 0; i <2; i++) {
-  thermostat.tempDown();
-}
-console.log(thermostat.displayUsage());
