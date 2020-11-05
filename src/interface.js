@@ -9,3 +9,8 @@ turnPSMOn = document.getElementById('PSM-on');
 var thermostat = new Thermostat();
 currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;
 PSMStatus.innerHTML = `Power Saving Mode: On`;
+
+tempUp.addEventListener('click', function() {
+    thermostat.tempUp();
+    currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;   
+  });
