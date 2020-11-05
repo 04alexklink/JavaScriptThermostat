@@ -30,6 +30,12 @@ turnPSMOff.addEventListener('click', function() {
   PSMStatus.innerHTML = `Power Saving Mode: Off`;
 });
 
+turnPSMOn.addEventListener('click', function() {
+  thermostat.powerSavingModeOn();
+  currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;
+  PSMStatus.innerHTML = `Power Saving Mode: On`;
+});
+
 function updateTemperature() {
   currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;
-}
+};
