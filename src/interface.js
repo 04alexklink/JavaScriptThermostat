@@ -9,19 +9,35 @@ turnPSMOn = document.getElementById('PSM-on');
 
 // AJAX request for weather for specific locations
 localTemp = document.getElementById('local-temperature');
+localCity = document.getElementById('city');
+localCitySelection = document.getElementById('current-city');
 var weather;
-function getLocalWeather() {
+function getLondonWeather() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric', true);
   xhr.onload = function() {
-  weather = JSON.parse(this.responseText);
-  localTemp.innerHTML= `${weather.main.temp}`
+    weather = JSON.parse(this.responseText);
+    localTemp.innerHTML= `${weather.main.temp}`
+    localCity.innerHTML= `London`
   }
   xhr.send();
 };
 
-getLocalWeather();
+getLondonWeather();
 
+localCitySelection.addEventListener('change', getLocalWeather); 
+
+function getLocalWeather() {
+  var city = localCitySelection.value;
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET',`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric`, true);
+  xhr.onload = function() {
+    var weather = JSON.parse(this.responseText);
+    localTemp.innerHTML= `${weather.main.temp}`;
+    localCity.innerHTML= `${city}`;
+  }
+  xhr.send();
+};
 
 var thermostat = new Thermostat();
 currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;
