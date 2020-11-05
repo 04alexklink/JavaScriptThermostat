@@ -20,6 +20,11 @@ tempDown.addEventListener('click', function() {
   updateTemperature();
 });
 
+resetTemp.addEventListener('click', function() {
+  thermostat.resetTemperature();
+  updateTemperature();
+})
+
 function updateTemperature() {
   currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;
 }
