@@ -12,10 +12,14 @@ PSMStatus.innerHTML = `Power Saving Mode: On`;
 
 tempUp.addEventListener('click', function() {
     thermostat.tempUp();
-    currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;   
+    updateTemperature();   
   });
 
 tempDown.addEventListener('click', function() {
   thermostat.tempDown();
-  currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;
+  updateTemperature();
 });
+
+function updateTemperature() {
+  currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;
+}
