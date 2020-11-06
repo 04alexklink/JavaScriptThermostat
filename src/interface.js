@@ -7,10 +7,10 @@ turnPSMOff = document.getElementById('PSM-off');
 turnPSMOn = document.getElementById('PSM-on');
 
 
-// AJAX request for weather for specific locations
+// AJAX request for London weather from an API. Loads to page by default:
 localTemp = document.getElementById('local-temperature');
 localCity = document.getElementById('city');
-localCitySelection = document.getElementById('current-city');
+dropDownLocalCitySelection = document.getElementById('dropdown-current-city');
 var weather;
 function getLondonWeather() {
   var xhr = new XMLHttpRequest();
@@ -25,10 +25,11 @@ function getLondonWeather() {
 
 getLondonWeather();
 
-localCitySelection.addEventListener('change', getLocalWeather); 
+// get Local Weather for one of 4 cities available in a drop down menu through AJAX request to weather API:
+dropDownLocalCitySelection.addEventListener('change', getLocalWeather); 
 
 function getLocalWeather() {
-  var city = localCitySelection.value;
+  var city = dropDownLocalCitySelection.value;
   var xhr = new XMLHttpRequest();
   xhr.open('GET',`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric`, true);
   xhr.onload = function() {
@@ -38,6 +39,21 @@ function getLocalWeather() {
   }
   xhr.send();
 };
+
+// get local weather for any city the user types in, sending AJAX request to weather API:
+submittedLocalCitySelection = document.getElementById('submitted-select-city');
+submittedLocalCitySelection.addEventListener('submit', function(e) {
+  e.preventDefault();
+  var city = document.getElementById('select-current-city').value;
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET',`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric`, true);
+  xhr.onload = function() {
+    var weather = JSON.parse(this.responseText);
+    localTemp.innerHTML= `${weather.main.temp}`;
+    localCity.innerHTML= `${city}`;
+  }
+  xhr.send();
+})
 
 var thermostat = new Thermostat();
 currentTemp.innerHTML = `${thermostat.getCurrentTemperature()}`;
